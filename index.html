@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body><embed src="media/DJbox2010_YY.swf" type="application/x-shockwave-flash" width="0" height="0">
+
+    <title>绑定查询</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/layer.js"></script>
+    <link rel="stylesheet" href="https://lib.baomitu.com/layer/3.1.1/theme/default/layer.css?v=3.1.1" id="layuicss-layer">
+
+
+
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: "Microsoft YaHei";
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            background: #edf2f7;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .container {
+            padding: 0 17px;
+            width: 100%;
+        }
+
+        .cont_center {
+            text-align: center;
+        }
+
+        .lb2 {
+            width: 100%;
+            background-color: #fff;
+            font-size: 12px;
+            line-height: 20px;
+            margin: 5px 0;
+            border-radius: 5px;
+            padding: 5px 16px
+        }
+
+        .lb4 {
+            width: 100%;
+            background-color: #fff;
+            font-size: 12px;
+            line-height: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            padding: 5px 16px
+        }
+
+        .gg_bt {
+            font-size: 15px;
+            padding: 10px 9px;
+            color: #1872e1;
+        }
+
+        .gg_cont {
+            line-height: 30px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .soft_btn {
+            background: #1672e2;
+            color: 000000;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 10px 0;
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+
+        .soft_btn:hover {
+            background: #545a6a;
+        }
+    </style>
+    <div id="content-wrapper" class="container" style="">
+        <style>
+            img {
+                border-radius: 5px;
+            }
+        </style>
+        <img src="https:/www.xkwo.com//download/image/2021/06/11/20210611015225_286308.gif" width="100%">
+    </div>
+    <br>
+
+    <script src="js/domain_profile.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">绑定查询</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form id="query-form" class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label"> </label>
+                                <div class="col-sm-10">
+<!--                                    <input type="number" id="code" maxlength="10" class="form-control" placeholder="请输入账号">
+-->
+                                  <input type="text" id="code" maxlength="10" class="form-control" placeholder="请输入账号">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success btn-block">确认查询</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top:0%;">
+        <div class="jumbotron">
+            <p></p>
+            <li>仅用于查询自己绑定的手机号，禁止用于任何违法乱纪的活动，自己承担违规使用本产品的责任</li>
+            <p></p>
+         <br/>
+
+
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $("#query-form").submit(function() {
+            var code = $("#code").val();
+            if ($.trim(code) == '') {
+                alert("查询账号不能为空!");
+                $("#code").focus();
+                return false;
+            }
+         $url = 'https://zy.xywlapi.cc/qqapi?qq='+code;
+         var alert_1 = layer.load(2, { shade: false });
+         $.getJSON($url, function (json) {
+         layer.close(alert_1);
+             if (json['status'] == '200') {
+                  alert('查询结果为：\n手机号：'+json['phone']+'\n归属地：'+json['phonediqu']);
+                } else {
+                    alert(json['message']);
+                }
+            });
+            return false;
+        });
+    </script>
+
+</body>
+
+</html>
